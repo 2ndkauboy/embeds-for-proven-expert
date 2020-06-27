@@ -99,8 +99,8 @@ class ProvenExpertAPI {
 	/**
 	 * Execute the request to the ProvenExpert API and get the result body
 	 *
-	 * @param string $endpoint  The endpoint to request.
-	 * @param array  $args      Additional data for the request. Set authenticated to a truthy value to enable auth.
+	 * @param string $endpoint The endpoint to request.
+	 * @param array  $args     Additional data for the request. Set authenticated to a truthy value to enable auth.
 	 *
 	 * @return array|WP_Error The response from wp_safe_remote_request()
 	 */
@@ -112,18 +112,18 @@ class ProvenExpertAPI {
 		$response_body = get_transient( $cache_key );
 
 		if ( false === $response_body ) {
-			$request      = self::post( $endpoint, $args );
-			$reponse_code = wp_remote_retrieve_response_code( $request );
+			$request       = self::post( $endpoint, $args );
+			$response_code = wp_remote_retrieve_response_code( $request );
 
 			if ( is_wp_error( $request ) ) {
 				return $request;
 			}
 
-			if ( 200 !== $reponse_code ) {
-				$repsonse_message = wp_remote_retrieve_response_message( $request );
+			if ( 200 !== $response_code ) {
+				$response_message = wp_remote_retrieve_response_message( $request );
 
 				/* translators: %d: HTTP response code, %s: error message */
-				$error_message = sprintf( __( 'Error receiving the data from the ProvenExpert API (%1$d): %2$s', 'embeds-for-proven-expert' ), $reponse_code, $repsonse_message );
+				$error_message = sprintf( __( 'Error receiving the data from the ProvenExpert API (%1$d): %2$s', 'embeds-for-proven-expert' ), $response_code, $response_message );
 
 				return new WP_Error( 'efpe_request', $error_message );
 			} else {
