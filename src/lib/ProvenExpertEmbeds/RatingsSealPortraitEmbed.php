@@ -8,11 +8,11 @@
 namespace EFPE\ProvenExpertEmbeds;
 
 /**
- * Class RatingsSeal
+ * Class RatingsSealPortraitEmbed
  *
- * @extends  AbstractWidget
+ * @extends  AbstractProvenExpertEmbed
  */
-class RatingsSealVerticalEmbed extends AbstractProvenExpertEmbed {
+class RatingsSealPortraitEmbed extends AbstractProvenExpertEmbed {
 	/**
 	 * Register the embed and it's settings.
 	 */
@@ -25,7 +25,7 @@ class RatingsSealVerticalEmbed extends AbstractProvenExpertEmbed {
 			'width'    => [
 				'label' => __( 'Ratings seal width in pixels', 'embeds-for-proven-expert' ),
 				'type'  => 'number',
-				'std'   => 200,
+				'std'   => 250,
 				'step'  => 1,
 				'min'   => 90,
 				'max'   => 250,

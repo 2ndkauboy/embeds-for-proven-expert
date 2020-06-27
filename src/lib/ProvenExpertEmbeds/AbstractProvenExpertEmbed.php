@@ -73,6 +73,6 @@ abstract class AbstractProvenExpertEmbed {
 			return '';
 		}
 
-		return $response_body['html'];
+		return '<div class="efpe-container" style="position: relative;">' . $response_body['html'] . '</div>';
 	}
 }

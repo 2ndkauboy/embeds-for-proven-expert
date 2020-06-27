@@ -22,6 +22,8 @@ class WidgetsRegistration {
 	 * Register all widgets
 	 */
 	public function register_widgets() {
-		register_widget( RatingsSealVerticalWidget::class );
+		register_widget( RatingsSealLandscapeWidget::class );
+		register_widget( RatingsSealPortraitWidget::class );
+		register_widget( RatingsSealSquareWidget::class );
 	}
 }
