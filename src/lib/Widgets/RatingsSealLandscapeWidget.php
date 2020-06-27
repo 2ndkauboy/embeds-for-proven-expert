@@ -10,7 +10,7 @@ namespace EFPE\Widgets;
 use EFPE\ProvenExpertEmbeds\RatingsSealLandscapeEmbed;
 
 /**
- * Class RatingsSeal
+ * Class RatingsSealLandscapeWidget
  *
  * @extends  AbstractWidget
  */
@@ -20,7 +20,7 @@ class RatingsSealLandscapeWidget extends AbstractWidget {
 	 */
 	public function __construct() {
 		$this->widget_cssclass    = 'efpe_seal_landscape';
-		$this->widget_description = esc_html__( 'Display a landscape seal widgets from ProvenExpert.', 'embeds-for-proven-expert' );
+		$this->widget_description = esc_html__( 'Display a landscape seal widget from ProvenExpert.', 'embeds-for-proven-expert' );
 		$this->widget_id          = 'efpe_seal_landscape';
 		$this->widget_name        = __( 'ProvenExpert Ratings Seal (landscape)', 'embeds-for-proven-expert' );
 		$this->embed              = new RatingsSealLandscapeEmbed();

@@ -10,7 +10,7 @@ namespace EFPE\Widgets;
 use EFPE\ProvenExpertEmbeds\RatingsSealPortraitEmbed;
 
 /**
- * Class RatingsSeal
+ * Class RatingsSealPortraitWidget
  *
  * @extends  AbstractWidget
  */
@@ -20,7 +20,7 @@ class RatingsSealPortraitWidget extends AbstractWidget {
 	 */
 	public function __construct() {
 		$this->widget_cssclass    = 'efpe_seal_portrait';
-		$this->widget_description = esc_html__( 'Display a portrait seal widgets from ProvenExpert.', 'embeds-for-proven-expert' );
+		$this->widget_description = esc_html__( 'Display a portrait seal widget from ProvenExpert.', 'embeds-for-proven-expert' );
 		$this->widget_id          = 'efpe_seal_portrait';
 		$this->widget_name        = __( 'ProvenExpert Ratings Seal (portrait)', 'embeds-for-proven-expert' );
 		$this->embed              = new RatingsSealPortraitEmbed();

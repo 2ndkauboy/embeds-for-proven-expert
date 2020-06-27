@@ -10,7 +10,7 @@ namespace EFPE\Widgets;
 use EFPE\ProvenExpertEmbeds\RatingsSealSquareEmbed;
 
 /**
- * Class RatingsSeal
+ * Class RatingsSealSquareWidget
  *
  * @extends  AbstractWidget
  */
@@ -20,7 +20,7 @@ class RatingsSealSquareWidget extends AbstractWidget {
 	 */
 	public function __construct() {
 		$this->widget_cssclass    = 'efpe_seal_square';
-		$this->widget_description = esc_html__( 'Display a square seal widgets from ProvenExpert.', 'embeds-for-proven-expert' );
+		$this->widget_description = esc_html__( 'Display a square seal widget from ProvenExpert.', 'embeds-for-proven-expert' );
 		$this->widget_id          = 'efpe_seal_square';
 		$this->widget_name        = __( 'ProvenExpert Ratings Seal (square)', 'embeds-for-proven-expert' );
 		$this->embed              = new RatingsSealSquareEmbed();
