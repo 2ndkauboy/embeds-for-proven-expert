@@ -1,21 +1,21 @@
 <?php
 /**
- * Embeds for ProvenExpert
+ * Embeds for Proven Expert
  *
  * @package embeds-for-proven-expert
  * @author  Bernhard Kau
  * @license GPLv3
  *
  * @wordpress-plugin
- * Plugin Name: Embeds for ProvenExpert
+ * Plugin Name: Embeds for Proven Expert
  * Plugin URI: https://github.com/2ndkauboy/embeds-for-proven-expert
- * Description: Embeds for ProvenExpert
+ * Description: Provide multiple embeds for Proven Expert rating seals, logos and rating summaries.
  * Version: 1.0.0
  * Author: Bernhard Kau
  * Author URI: https://kau-boys.de
  * Text Domain: embeds-for-proven-expert
  * License: GPLv3
- * License URI: http://www.gnu.org/licenses/gpl-3.0.txt
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
 define( 'EFPE_VERSION', '1.0.0' );
