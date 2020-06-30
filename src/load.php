@@ -9,6 +9,7 @@ namespace EFPE;
 
 use EFPE\Helpers\ProvenExpertAPI;
 use EFPE\Widgets\WidgetsRegistration;
+use EFPE\Settings\ProvenExpertApiCredentials;
 
 /**
  * Init function of the plugin
@@ -23,8 +24,9 @@ function load() {
 
 	// Construct all modules to initialize.
 	$modules = [
-		'proven_expert_api'    => new ProvenExpertAPI(),
-		'widgets_registration' => new WidgetsRegistration(),
+		'proven_expert_api'        => new ProvenExpertAPI(),
+		'widgets_registration'     => new WidgetsRegistration(),
+		'settings_api_credentials' => new ProvenExpertApiCredentials(),
 	];
 
 	// Initialize all modules.
@@ -34,4 +36,5 @@ function load() {
 		}
 	}
 }
+
 add_action( 'plugins_loaded', 'EFPE\load' );
