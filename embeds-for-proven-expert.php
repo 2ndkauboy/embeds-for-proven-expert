@@ -1,15 +1,15 @@
 <?php
 /**
- * Embeds for Proven Expert
+ * Embeds for ProvenExpert
  *
  * @package embeds-for-proven-expert
  * @author  Bernhard Kau
  * @license GPLv3
  *
  * @wordpress-plugin
- * Plugin Name: Embeds for Proven Expert
+ * Plugin Name: Embeds for ProvenExpert
  * Plugin URI: https://github.com/2ndkauboy/embeds-for-proven-expert
- * Description: Provide multiple embeds for Proven Expert rating seals, logos and rating summaries.
+ * Description: Provide multiple Embeds for ProvenExpert rating seals, logos and rating summaries.
  * Version: 1.0.0
  * Author: Bernhard Kau
  * Author URI: https://kau-boys.de
