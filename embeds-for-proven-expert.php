@@ -10,7 +10,7 @@
  * Plugin Name: Embeds for ProvenExpert
  * Plugin URI: https://github.com/2ndkauboy/embeds-for-proven-expert
  * Description: Provide multiple Embeds for ProvenExpert rating seals, logos and rating summaries.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Bernhard Kau
  * Author URI: https://kau-boys.de
  * Text Domain: embeds-for-proven-expert
@@ -18,7 +18,7 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  */
 
-define( 'EFPE_VERSION', '1.0.0' );
+define( 'EFPE_VERSION', '1.0.1' );
 define( 'EFPE_FILE', __FILE__ );
 define( 'EFPE_PATH', plugin_dir_path( EFPE_FILE ) );
 
@@ -47,7 +47,7 @@ function efpe_pre_init() {
 		return;
 	}
 
-	// If all checks were succcessful, load the plugin.
+	// If all checks were successful, load the plugin.
 	require_once EFPE_PATH . 'src/load.php';
 }
 

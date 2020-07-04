@@ -2,7 +2,7 @@
 /**
  * Abstract widget class
  *
- * @see      WooCommerce\Abstracts\WC_Widget
+ * @see      WooCommerce/Abstracts/WC_Widget
  *
  * @package  EFPE\Widgets
  */

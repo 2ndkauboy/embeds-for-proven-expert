@@ -2,7 +2,7 @@
 /**
  * Helper class to access the ProvenExpert API
  *
- * @see      WooCommerce\Admin\WC_Helper_API
+ * @see      WooCommerce/Admin/WC_Helper_API
  *
  * @package  EFPE\Helpers
  */
@@ -18,9 +18,23 @@ class ProvenExpertAPI {
 	/**
 	 * Base path for API routes.
 	 *
-	 * @var $api_base
+	 * @var string
 	 */
 	public static $api_base;
+
+	/**
+	 * The authorization ID.
+	 *
+	 * @var string
+	 */
+	public static $api_id = '';
+
+	/**
+	 * The authorization key.
+	 *
+	 * @var string
+	 */
+	public static $api_key = '';
 
 	/**
 	 * Initialize the helper
@@ -37,6 +51,8 @@ class ProvenExpertAPI {
 	 */
 	public static function load() {
 		self::$api_base = apply_filters( 'efpe_helper_api_base', 'https://www.provenexpert.com/api/v1' );
+		self::$api_id   = get_option( 'efpe_api_id' );
+		self::$api_key  = get_option( 'efpe_api_key' );
 	}
 
 	/**
@@ -48,15 +64,13 @@ class ProvenExpertAPI {
 	 * @return array|WP_Error The response from wp_safe_remote_request()
 	 */
 	public static function request( $endpoint, $args = [] ) {
-		$url     = self::url( $endpoint );
-		$api_id  = get_option( 'efpe_api_id' );
-		$api_key = get_option( 'efpe_api_key' );
+		$url = self::url( $endpoint );
 
-		if ( empty( $api_id ) || empty( $api_key ) ) {
+		if ( empty( self::$api_id ) || empty( self::$api_key ) ) {
 			return new WP_Error( 'efpe_authentication', __( 'You need to set up the API credentials in the settings', 'embeds-for-proven-expert' ) );
 		}
 
-		$args['headers']['Authorization'] = 'Basic ' . base64_encode( $api_id . ':' . $api_key ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+		$args['headers']['Authorization'] = 'Basic ' . base64_encode( self::$api_id . ':' . self::$api_key ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
 
 		/**
 		 * Allow developers to filter the request args passed to wp_safe_remote_request().

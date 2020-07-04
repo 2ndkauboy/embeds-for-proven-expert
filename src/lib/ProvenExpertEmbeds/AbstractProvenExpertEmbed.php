@@ -46,10 +46,11 @@ abstract class AbstractProvenExpertEmbed {
 			// Remove the arg, if it's not within the settings of this specific embed.
 			if ( ! array_key_exists( $key, $this->settings ) ) {
 				unset( $args[ $key ] );
-			}
-			// Check if setting with type "number" are "empty" and remove them, as they otherwise cause issues.
-			if ( 'number' === $this->settings[ $key ]['type'] && ( ! is_numeric( $arg ) || empty( $arg ) ) ) {
-				unset( $args[ $key ] );
+			} else {
+				// Check if setting with type "number" are "empty" and remove them, as they otherwise cause issues.
+				if ( 'number' === $this->settings[ $key ]['type'] && ( ! is_numeric( $arg ) || empty( $arg ) ) ) {
+					unset( $args[ $key ] );
+				}
 			}
 		}
 

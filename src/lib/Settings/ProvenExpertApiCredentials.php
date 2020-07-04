@@ -7,6 +7,8 @@
 
 namespace EFPE\Settings;
 
+use EFPE\Helpers\ProvenExpertAPI;
+
 /**
  * Class ProvenExpertApiCredentials
  */
@@ -17,6 +19,7 @@ class ProvenExpertApiCredentials {
 	public function init() {
 		add_action( 'admin_menu', [ $this, 'add_options_page' ] );
 		add_action( 'admin_init', [ $this, 'add_settings' ] );
+		add_filter( 'pre_update_option_efpe_api_key', [ $this, 'validate_credentials' ], 10, 3 );
 	}
 
 	/**
@@ -124,5 +127,67 @@ class ProvenExpertApiCredentials {
 		?>
 		<input type="text" id="<?php echo esc_attr( $args['label_for'] ); ?>>" name="<?php echo esc_attr( $args['label_for'] ); ?>" value="<?php echo isset( $setting ) ? esc_attr( $setting ) : ''; ?>" class="regular-text">
 		<?php
+	}
+
+	/**
+	 * Validate if the credentials are correct, if not, return the old value so the update is skipped
+	 *
+	 * @param mixed  $value     The new, unserialized option value.
+	 * @param mixed  $old_value The old option value.
+	 * @param string $option    Option name.
+	 *
+	 * @return string
+	 */
+	public function validate_credentials( $value, $old_value, $option ) {
+		// Check the credentials by getting the "Logo" embed.
+		$args = [
+			'body' => [
+				'data' => [
+					'type' => 'logo',
+				],
+			],
+		];
+
+		// Set the API credentials with the new values.
+		ProvenExpertAPI::$api_id  = get_option( 'efpe_api_id' );
+		ProvenExpertAPI::$api_key = $value;
+
+		// Try to get a API response with those crendentials.
+		$request = ProvenExpertAPI::post( '/widget/create', $args );
+
+		if ( ! is_wp_error( $request ) ) {
+			$response_body = json_decode( wp_remote_retrieve_body( $request ), true );
+
+			if ( 'error' === $response_body['status'] ) {
+				if ( isset( $response_body['errors'][0] ) && ( 'authentication failure' === $response_body['errors'][0] || 'wrong credentials' === $response_body['errors'][0] ) ) {
+					add_settings_error(
+						'efpe',
+						esc_attr( 'settings_updated' ),
+						__( 'The credentials you have entered are wrong!', 'embeds-for-proven-expert' )
+					);
+				} else {
+					add_settings_error(
+						'efpe',
+						esc_attr( 'settings_updated' ),
+						__( 'There was an unknown error validating the credentials!', 'embeds-for-proven-expert' )
+					);
+				}
+			} else {
+				add_settings_error(
+					'efpe',
+					esc_attr( 'settings_updated' ),
+					__( 'The credentials you have entered have been validated and are correct!', 'embeds-for-proven-expert' ),
+					'success'
+				);
+			}
+		} else {
+			add_settings_error(
+				'efpe',
+				esc_attr( 'settings_updated' ),
+				__( 'There was a request error trying to validating the credentials!', 'embeds-for-proven-expert' )
+			);
+		}
+
+		return $value;
 	}
 }
