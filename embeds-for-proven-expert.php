@@ -10,7 +10,7 @@
  * Plugin Name: Embeds for ProvenExpert
  * Plugin URI: https://github.com/2ndkauboy/embeds-for-proven-expert
  * Description: Provide multiple Embeds for ProvenExpert rating seals, logos and rating summaries.
- * Version: 1.0.2
+ * Version: 1.0.2.1
  * Author: Bernhard Kau
  * Author URI: https://kau-boys.de
  * Text Domain: embeds-for-proven-expert

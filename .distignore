@@ -1,0 +1,9 @@
+composer.lock
+.distignore
+.editorconfig
+.git
+.gitattributes
+.github
+.gitignore
+phpcs.xml
+.wordpress-org
