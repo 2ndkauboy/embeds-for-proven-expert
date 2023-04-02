@@ -29,9 +29,6 @@ efpe_pre_init();
  * Pre init function to check the plugins compatibility.
  */
 function efpe_pre_init() {
-	// Load the translation, as they might be needed in pre_init.
-	add_action( 'plugins_loaded', 'efpe_load_textdomain' );
-
 	// Check, if the min. required PHP version is available and if not, show an admin notice.
 	if ( version_compare( PHP_VERSION, '5.6', '<' ) ) {
 		add_action( 'admin_notices', 'efpe_min_php_version_error' );
@@ -49,15 +46,6 @@ function efpe_pre_init() {
 
 	// If all checks were successful, load the plugin.
 	require_once EFPE_PATH . 'src/load.php';
-}
-
-/**
- * Load plugin textdomain.
- *
- * @since 1.0.0
- */
-function efpe_load_textdomain() {
-	load_plugin_textdomain( 'embeds-for-proven-expert', false, basename( dirname( __FILE__ ) ) . '/languages' );
 }
 
 /**
