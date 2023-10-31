@@ -132,6 +132,8 @@ class ProvenExpertApiCredentials {
 	/**
 	 * Validate if the credentials are correct, if not, return the old value so the update is skipped
 	 *
+	 * @phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
+	 *
 	 * @param mixed  $value     The new, unserialized option value.
 	 * @param mixed  $old_value The old option value.
 	 * @param string $option    Option name.
@@ -152,7 +154,7 @@ class ProvenExpertApiCredentials {
 		ProvenExpertAPI::$api_id  = get_option( 'efpe_api_id' );
 		ProvenExpertAPI::$api_key = $value;
 
-		// Try to get a API response with those crendentials.
+		// Try to get an API response with those crendentials.
 		$request = ProvenExpertAPI::post( '/widget/create', $args );
 
 		if ( ! is_wp_error( $request ) ) {
