@@ -108,7 +108,7 @@ abstract class AbstractWidget extends WP_Widget {
 		}
 
 		if ( isset( $cache[ $this->get_widget_id_for_cache( $args['widget_id'] ) ] ) ) {
-			echo $cache[ $this->get_widget_id_for_cache( $args['widget_id'] ) ]; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+			echo $cache[ $this->get_widget_id_for_cache( $args['widget_id'] ) ]; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			return true;
 		}
@@ -178,12 +178,12 @@ abstract class AbstractWidget extends WP_Widget {
 	 * @param array $instance Instance.
 	 */
 	public function widget_start( $args, $instance ) {
-		echo $args['before_widget']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		$title = apply_filters( 'widget_title', $this->get_instance_title( $instance ), $instance, $this->id_base );
 
 		if ( $title ) {
-			echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+			echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 
@@ -193,7 +193,7 @@ abstract class AbstractWidget extends WP_Widget {
 	 * @param array $args Arguments.
 	 */
 	public function widget_end( $args ) {
-		echo $args['after_widget']; // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped
+		echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -273,7 +273,7 @@ abstract class AbstractWidget extends WP_Widget {
 				case 'text':
 					?>
 					<p class="efpe-setting <?php echo esc_attr( $class ); ?>">
-						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo wp_kses_post( $setting['label'] ); ?><?php /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo wp_kses_post( $setting['label'] ); ?><?php /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?></label>
 						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" type="text" value="<?php echo esc_attr( $value ); ?>"/>
 					</p>
 					<?php
@@ -282,7 +282,7 @@ abstract class AbstractWidget extends WP_Widget {
 				case 'number':
 					?>
 					<p class="efpe-setting <?php echo esc_attr( $class ); ?>">
-						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?></label>
 						<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" type="number" step="<?php echo esc_attr( $setting['step'] ); ?>" min="<?php echo esc_attr( $setting['min'] ); ?>" max="<?php echo esc_attr( $setting['max'] ); ?>" value="<?php echo esc_attr( $value ); ?>"/>
 					</p>
 					<?php
@@ -291,7 +291,7 @@ abstract class AbstractWidget extends WP_Widget {
 				case 'select':
 					?>
 					<p class="efpe-setting <?php echo esc_attr( $class ); ?>">
-						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?></label>
 						<select class="widefat" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>">
 							<?php foreach ( $setting['options'] as $option_key => $option_value ) : ?>
 								<option value="<?php echo esc_attr( $option_key ); ?>" <?php selected( $option_key, $value ); ?>><?php echo esc_html( $option_value ); ?></option>
@@ -304,7 +304,7 @@ abstract class AbstractWidget extends WP_Widget {
 				case 'textarea':
 					?>
 					<p class="efpe-setting <?php echo esc_attr( $class ); ?>">
-						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?></label>
 						<textarea class="widefat" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" cols="20" rows="3"><?php echo esc_textarea( $value ); ?></textarea>
 						<?php if ( isset( $setting['desc'] ) ) : ?>
 							<small><?php echo esc_html( $setting['desc'] ); ?></small>
@@ -317,7 +317,7 @@ abstract class AbstractWidget extends WP_Widget {
 					?>
 					<p class="efpe-setting <?php echo esc_attr( $class ); ?>">
 						<input class="checkbox" id="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( $key ) ); ?>" type="checkbox" value="1" <?php checked( $value, 1 ); ?> />
-						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped */ ?></label>
+						<label for="<?php echo esc_attr( $this->get_field_id( $key ) ); ?>"><?php echo $setting['label']; /* phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped */ ?></label>
 					</p>
 					<?php
 					break;
