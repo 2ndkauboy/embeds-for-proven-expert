@@ -57,7 +57,7 @@ class ProvenExpertApiCredentials {
 
 		add_settings_field(
 			'efpe_api_id_settings_field',
-			__( 'API ID', 'embeds-for-proven-expert' ),
+			__( 'API ID / Username', 'embeds-for-proven-expert' ),
 			[ $this, 'settings_field' ],
 			'efpe',
 			'efpe_api_credentials_section',
