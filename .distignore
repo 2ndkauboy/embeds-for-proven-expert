@@ -1,0 +1,13 @@
+*.lock
+composer.json
+composer.lock
+.distignore
+.editorconfig
+.eslintrc
+.git
+.gitattributes
+.github
+.gitignore
+phpcs.xml
+.stylelintrc.json
+.wordpress-org
