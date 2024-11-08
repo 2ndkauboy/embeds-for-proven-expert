@@ -69,6 +69,16 @@ abstract class AbstractProvenExpertEmbed {
 		$response_body = ProvenExpertAPI::get_response_body( $this->api_endpoint, $request_args );
 
 		if ( is_wp_error( $response_body ) ) {
+			$error_data = $response_body->get_error_data();
+			if ( isset( $error_data['errors'] ) && in_array( 'wrong plan', $error_data['errors'] ) ) {
+				if ( current_user_can( 'edit_theme_options' ) ) {
+					return sprintf(
+						'<div style="border-left: 4px solid red; padding: 10px; background: #eee;">%s</div>',
+						esc_html__( 'Error (only visible to you): This widget cannot be viewed with your ProvenExpert plan!', 'embeds-for-proven-expert' )
+					);
+				}
+			}
+
 			return '';
 		}
 

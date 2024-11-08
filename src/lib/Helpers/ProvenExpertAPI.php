@@ -144,7 +144,14 @@ class ProvenExpertAPI {
 				$response_body = json_decode( wp_remote_retrieve_body( $request ), true );
 			}
 
-			set_transient( $cache_key, $response_body, 12 * HOUR_IN_SECONDS );
+			if ( 'error' !== $response_body['status'] ) {
+				set_transient( $cache_key, $response_body, 12 * HOUR_IN_SECONDS );
+			} else {
+				/* translators: %d: HTTP response code, %s: error message */
+				$error_message = sprintf( __( 'Error receiving the data from the ProvenExpert API (%1$d): %2$s', 'embeds-for-proven-expert' ), $response_code, implode( ', ', $response_body['errors'] ) );
+
+				return new WP_Error( 'efpe_request', $error_message, $response_body );
+			}
 		}
 
 		return $response_body;
