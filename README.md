@@ -3,7 +3,7 @@
 Contributors: Kau-Boy  
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7914504  
 Requires at least: 5.0  
-Tested up to: 6.7  
+Tested up to: 6.8  
 Requires PHP: 5.6  
 Stable tag: 1.1.0  
 License: GPLv3  
